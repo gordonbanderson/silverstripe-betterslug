@@ -13,15 +13,20 @@ class ExtendedTransliterator extends Object
     /**
      * Convert the given utf8 string to a safe ASCII source
      */
-    public function toASCII($source) {
-        if(function_exists('iconv') && $this->config()->use_iconv) return $this->useIconv($source);
-        else return $this->useStrTr($source);
+    public function toASCII($source)
+    {
+        if (function_exists('iconv') && $this->config()->use_iconv) {
+            return $this->useIconv($source);
+        } else {
+            return $this->useStrTr($source);
+        }
     }
 
     /**
      * Transliteration using strtr() and a lookup table
      */
-    protected function useStrTr($source) {
+    protected function useStrTr($source)
+    {
         // Rullset taken from https://github.com/cocur/slugify/blob/master/src/RuleProvider/DefaultRuleProvider.php
         $table = array(
             'أ' => 'a',
@@ -857,7 +862,8 @@ class ExtendedTransliterator extends Object
     /**
      * Transliteration using iconv()
      */
-    protected function useIconv($source) {
+    protected function useIconv($source)
+    {
         return iconv("utf-8", "us-ascii//IGNORE//TRANSLIT", $source);
     }
 }
