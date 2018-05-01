@@ -1,4 +1,6 @@
 <?php
+namespace DariuszP\BetterSlug;
+
 
 class ExtendedTransliterator extends Object
 {
